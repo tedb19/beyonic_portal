@@ -1,0 +1,120 @@
+{% extends 'user_account/base.html'%}
+
+{% block title %} {{page_title}} | {{block.super}} {% endblock title %}
+
+{% block content %}
+<div class="col-lg-12 col-md-12">
+    <div class="well">
+        Please take a moment to register for an account. 
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="glyphicon glyphicon-edit"></i> {{page_title}}
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <form role="form form-horizontal" method = "POST" action = '/user/sign-up/'>
+                    {% csrf_token %}
+
+                    <div class="col-lg-6">
+                        <label class="control-label"><em>Username:*</em></label>
+                        {% if form.username.errors %}
+                        <div class="form-group has-error">
+                            {{ form.username }}
+                            <span class="error">{{form.username.errors}}</span>
+                        </div>
+                        {% else %}
+                        <div class="form-group">
+                            {{ form.username }}
+                        </div>
+                        {% endif %}
+
+                        <label class="control-label"><em>First Name:*</em></label>
+                        {% if form.first_name.errors  %}
+                        <div class="form-group has-error">
+                            {{ form.first_name }}
+                            <span class="error">{{form.first_name.errors}}</span>
+                        </div>
+                        {% else %}
+                        <div class="form-group">
+                            {{ form.first_name }}
+                        </div>
+                        {% endif %}
+
+                        <label class="control-label"><em>Surname:*</em></label>
+                        {% if form.last_name.errors %}
+                        <div class="form-group has-error">
+                            {{ form.last_name }}
+                            <span class="error">{{form.last_name.errors}}</span>
+                        </div>
+                        {% else %}
+                        <div class="form-group">
+                            {{ form.last_name }}
+                        </div>
+                        {% endif %}
+
+                        <label class="control-label"><em>Email address:*</em></label>
+                        {% if form.email.errors %}
+                        <div class="form-group has-error">
+                            {{ form.email }}
+                            <span class="error">{{form.email.errors}}</span>
+                        </div>
+                        {% else %}
+                        <div class="form-group">
+                            {{ form.email }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="control-label"><em>Phone Number:*</em></label>
+                        {% if form.phone_number.errors %}
+                        <div class="form-group has-error input-group">
+                            <span class="input-group-addon">+
+                            </span>{{ form.phone_number }}
+                            <span class="error">{{form.phone_number.errors}}</span>
+                        </div>
+                        {% else %}
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">+
+                            </span>{{ form.phone_number }}
+                        </div>
+                        {% endif %}
+
+                        <label class="control-label"><em>Password:*</em></label>
+                        {% if form.password1.errors %}
+                        <div class="form-group has-error">
+                            {{ form.password1 }}
+                            <span class="error">{{form.password1.errors}}</span>
+                        </div>
+                        {% else %}
+                        <div class="form-group">
+                            {{ form.password1 }}
+                        </div>
+                        {% endif %}
+
+                        <label class="control-label"><em>Password (Again):*</em></label>
+                        {% if form.password2.errors %}
+                        <div class="form-group has-error">
+                            {{ form.password2 }}
+                            <span class="error">{{form.password2.errors}}</span>
+                        </div>
+                        {% else %}
+                        <div class="form-group">
+                            {{ form.password2 }}
+                        </div>
+                        {% endif %}
+
+                        <input type="submit" name="submit"  class="btn btn-primary reg" value="Save">
+                        <input type="reset" name="reset"  class="btn btn-primary reg" value="Reset">
+                        <input name="cancel" formnovalidate class="btn reg" type="submit" value="Cancel"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel-footer">
+            Fields With * Are Required, Therefore Must Be Filled
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

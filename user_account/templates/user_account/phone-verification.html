@@ -1,0 +1,44 @@
+{% extends 'user_account/base.html'%}
+
+{% block title %} {{page_title}} | {{block.super}} {% endblock title %}
+
+{% block content %}
+<div class="col-lg-12 col-md-12">
+    <div class = "well">
+        <p><strong>{{page_title}}</strong></p>
+        The next step is to verify your phone number. A 5-digit code has been sent to your phone number.
+         Kindly enter the code in the form below:
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="glyphicon glyphicon-edit"></i> {{page_title}}
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                 <div class="col-lg-6">
+                     <form role="form" method = "POST" action = '.'>
+                        {% csrf_token %}
+
+                        {% if form.code.errors %}
+                        <div class="form-group has-error">
+                            {{ form.code }}
+                            <span class="error">{{form.code.errors}}</span>
+                        </div>
+                        {% else %}
+                        <div class="form-group">
+                            {{ form.code }}
+                        </div>
+                        {% endif %}
+
+                        <input type="submit" name="submit"  class="btn btn-primary reg" value="Submit">
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            Would you want the code sms <a>resent?</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

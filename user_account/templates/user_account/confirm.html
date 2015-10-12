@@ -1,0 +1,17 @@
+{% extends 'user_account/base.html'%}
+
+{% block title %} {{page_title}} | {{block.super}} {% endblock title %}
+
+{% block content %}
+<div class="col-lg-12 col-md-12">
+    <h1>{{page_title}}</h1>
+    <div class = "well">
+        {% if expired %}
+            <span>Sorry, but the activation key has expired! </span>
+        {% endif %}
+        {% if success %}
+            <span></span>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
