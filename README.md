@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/tedb19/beyonic_portal.svg)](https://travis-ci.org/tedb19/beyonic_portal)
-
 #Beyonic Portal
 
 This project has been built and tested on python 3.4
