@@ -1,0 +1,28 @@
+.navbar-inverse .navbar-brand{
+    color: white;
+    font-size: 18px;
+    font-weight: 200;
+}
+.nav{
+    color: white;
+}
+.msg{
+    list-style-type: none;
+    padding-left: initial;
+}
+.login-panel {
+    margin-top: 25%;
+}
+.panel-title{
+    color: blue;
+}
+.errorlist{
+    list-style-type: none !important;
+}
+.errorlist li{
+    float: right;
+    color: red;
+}
+.well{
+    margin-top: 20px;
+}
