@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django import forms
 from django.core.urlresolvers import reverse
+
 from ..testing_utilities import (login_client_user,
                                  populate_test_db,
                                  delete_test_data,

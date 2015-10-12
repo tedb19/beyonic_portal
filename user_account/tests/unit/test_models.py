@@ -2,8 +2,6 @@ from django.test import TestCase
 from django.core import mail
 from django.conf import settings
 
-import twilio
-
 from user_account.models import UserProfile
 from ..testing_utilities import populate_test_db, delete_test_data
 
@@ -57,9 +55,8 @@ class UserProfileTests(TestCase):
         self.assertEqual(msg.subject, 'Beyonic Portal account confirmation')
         url = "{0}/user/accounts/confirm/{1}/".format(
             root_url, self.user_profile.activation_key)
-        self.assertIn(url, msg.body)  # verification urls, change password urls etc. when applicable
+        self.assertIn(url, msg.body)
         self.assertIn('Below is your account activation link', msg.body)
-
 
     def tearDown(self):
         delete_test_data()

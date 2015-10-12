@@ -5,16 +5,12 @@ import logging
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
 from django.utils.translation import ugettext_lazy as _
-from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.utils import timezone
 from django.core.cache import cache
 from django.conf import settings
-
-
 
 from .models import UserProfile
 from .forms import RegistrationForm, LoginForm, PhoneVerificationForm
@@ -120,7 +116,7 @@ def confirm(request, activation_key):
 def home(request):
     template_name = 'user_account/home.html'
     page_title = 'Beyonic Portal'
-    
+
     if request.user.is_authenticated():
         user_profile = request.user.my_profile
     return render(request, template_name, locals())
@@ -225,10 +221,10 @@ def index(request):
 def error404(request):
     template_name = 'user_account/error404.html'
     page_title = 'Page not found'
-    return render(request,template_name, locals())
+    return render(request, template_name, locals())
 
 
 def error500(request):
     template_name = 'user_account/error500.html'
     page_title = 'Internal server error'
-    return render(request,template_name, locals())
+    return render(request, template_name, locals())
