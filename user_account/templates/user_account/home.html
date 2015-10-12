@@ -1,0 +1,33 @@
+{% extends 'user_account/base.html'%}
+
+{% block title %} {{page_title}} | {{block.super}} {% endblock title %}
+
+{% block content %}
+<div class="col-lg-12 col-md-12">
+    <div class="well">
+        <strong>{{page_title}}</strong>
+        {% if user.is_authenticated %}
+            {% if user_profile %}
+                <div>
+                    <p>Your account details are as follows:</p>
+                    <strong>Name: </strong><em>{{user.first_name |title}} {{user.last_name |title}}</em>
+                    <br />
+                    <strong>Phone number: </strong><em>{{user_profile.phone_number}}</em>
+                    <br />
+                    <strong>Email: </strong><em>{{user.email}}</em>
+                    <br />
+                    <br />
+                    <p>We are happy to have you on board!</p>
+                </div>
+            {% else %}
+                <div>
+                    <p>It appears you have no user profile. Your account has been suspended!</p>
+                </div>
+            {% endif%}
+        {% else %}
+            <p>Please <a href = "{% url 'registration' %}">sign up</a> for an account.
+            <br /><br />Already have an account? <a href = "{% url 'user_login' %}">login</a> to your account.</p>
+        {% endif%}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'user_account/base.html'%}
+
+{% block title %} {{page_title}} | {{block.super}} {% endblock title %}
+
+{% block content %}
+<div class="col-lg-12 col-md-12">
+    <div class = "well">
+        <h1>{{page_title}}</h1>
+        Sorry, but we couldn't find the page you requested. If you typed the address, please double-check the spelling.
+        If you feel something is missing that should be here, <a>contact us</a>
+
+        <p>Otherwise, please head over to <a href = "{% url 'home' %}">our home page</a></p>
+
+    </div>
+</div>
+{% endblock content %}
