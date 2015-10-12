@@ -8,7 +8,8 @@ db.sqlite3
 .coverage
 
 # log files
-logs/*
+logs/app.log
+logs/django_request.log
 
 # STATIC_ROOT folder
 served/
