@@ -3,7 +3,6 @@ import datetime
 from django.core.urlresolvers import reverse
 from django.core.urlresolvers import resolve
 from django.test import TestCase, Client
-from django.http import Http404, HttpResponse
 from django.utils import timezone
 
 from user_account.models import UserProfile
@@ -11,8 +10,7 @@ from user_account.views import success, home
 
 from ..testing_utilities import (populate_test_db,
                                  delete_test_data,
-                                 login_client_user,
-                                 logout_client_user)
+                                 login_client_user)
 
 
 class HomeViewTests(TestCase):
@@ -93,7 +91,7 @@ class RegistrationViewTests(TestCase):
         self.assertTrue(login_client_user(self))
         response = self.client.get(self.registration_url)
         self.assertRedirects(response, expected_url=self.home_url,
-         status_code=302, target_status_code=200)
+                             status_code=302, target_status_code=200)
 
     def tearDown(self):
         delete_test_data()
@@ -149,8 +147,7 @@ class LoginViewTests(TestCase):
         self.assertTrue(login_client_user(self))
         response = self.client.get(self.login_url)
         self.assertRedirects(response, expected_url=self.home_url,
-         status_code=302, target_status_code=200)
-
+                             status_code=302, target_status_code=200)
 
     def tearDown(self):
         delete_test_data()
@@ -210,13 +207,12 @@ class ConfirmViewTests(TestCase):
 
     def test_confirm_displays_error__message_when_key_expires(self):
         '''Test confirm view displays error message when key expires'''
-        self.user_profile.key_expires=timezone.now() - datetime.timedelta(2)
+        self.user_profile.key_expires = timezone.now() - datetime.timedelta(2)
         self.user_profile.save()
         response = self.client.get(self.confirm_url)
         error = 'Sorry, but the activation key has expired!'
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, error)
-
 
     def tearDown(self):
         delete_test_data()

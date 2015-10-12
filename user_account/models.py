@@ -1,10 +1,8 @@
-from django.db import models
 import logging
-import random
 
+from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
 from django.core.mail import send_mail
 from django.core.cache import cache
 
@@ -49,7 +47,6 @@ class UserProfile(TimeStampedModel):
         profile.append(str(self.phone_number))
         return ' - '.join(profile)
 
-
     def send_sms(self, code):
         try:
             account_sid = settings.TWILIO_ACCOUNT_SID
@@ -59,11 +56,13 @@ class UserProfile(TimeStampedModel):
 
             client = TwilioRestClient(account_sid, auth_token)
             body = ('Enter the code: {0} on the'
-                    'verification form to verify your phone number').format(code)
+                    'verification form to verify'
+                    ' your phone number').format(code)
             client.messages.create(body=body,
                                    to=phone_number,
                                    from_=twilio_phone_number)
-            logger.info(_('verification code sent to {0} ').format(phone_number))
+            logger.info(
+                _('verification code sent to {0} ').format(phone_number))
         except twilio.TwilioRestException as e:
             error_msg = _('An error occured while sending'
                           ' the verification code: {0}').format(e)
@@ -72,7 +71,6 @@ class UserProfile(TimeStampedModel):
     def verify_code(self, code):
         """ Verify a code is correct """
         return str(code) == str(cache.get(str(self.phone_number)))
-
 
     def send_activation_link(self):
         root_url = settings.ROOT_URL
@@ -84,20 +82,22 @@ class UserProfile(TimeStampedModel):
         # for content-type = text/html
         html_msg = ''' <html><body><div>Hello {0},
         <br /><br />
-        Thank you for signing up for a Beyonics Portal account. 
+        Thank you for signing up for a Beyonics Portal account.
         To activate your account, click the following link within
          48 hours
         <br /><br />
         {1}
         <br /><br />
-        You will then be asked to submit a code that has been sent to you at {2} via sms.
+        You will then be asked to submit a code that has been sent
+         to you at {2} via sms.
         <br /><br />
         Good day
         <br /><br />
         <style="color:green">-Teddy Odhiambo</style>
         <br /><br />
         </div></body></html>
-        '''.format(self.user.get_full_name().title(), link, str(self.phone_number))
+        '''.format(self.user.get_full_name().title(),
+                   link, str(self.phone_number))
 
         # for content-type = text/plain
         email_body = '''Hello {0},\n
@@ -105,7 +105,8 @@ class UserProfile(TimeStampedModel):
         \n\nThis link will expire in 48 hours.\n\n
         You will then be asked to submit a code that
          has been sent to you at {2} via sms.
-         \n\nThank you'''.format(self.user.get_full_name(), link, str(self.phone_number))
+         \n\nThank you'''.format(self.user.get_full_name(),
+                                 link, str(self.phone_number))
 
         try:
             send_mail(email_subject,
@@ -114,7 +115,8 @@ class UserProfile(TimeStampedModel):
                       [self.user.email],
                       html_message=html_msg,
                       fail_silently=False)
-            logger.info(_('email sent successfully to {0}').format(self.user.email))
+            logger.info(
+                _('email sent successfully to {0}').format(self.user.email))
         except Exception as detail:
             logger.error(_('Could not send mail. {0}').format(detail))
 

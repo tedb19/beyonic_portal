@@ -1,12 +1,12 @@
-from selenium.webdriver.firefox import webdriver
-from django.core.urlresolvers import reverse
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from ..testing_utilities import populate_test_db, delete_test_data, set_up_form_values
-
 import time
 
-from django import test
 from selenium.webdriver.firefox import webdriver
+from django.core.urlresolvers import reverse
+from django import test
+
+from ..testing_utilities import (populate_test_db,
+                                 delete_test_data,
+                                 set_up_form_values)
 
 
 class LoginTest(test.LiveServerTestCase):
@@ -27,6 +27,7 @@ class LoginTest(test.LiveServerTestCase):
         return self.live_server_url + reverse(namespace)
 
     def test_if_user_logs_in(self):
+        ''' Test if login succeeds for active user '''
         text = 'Phone Number Verification'
         self.open_login_page()
         time.sleep(3)
@@ -72,6 +73,7 @@ class RegistrationTest(test.LiveServerTestCase):
         return self.live_server_url + reverse(namespace)
 
     def test_if_registration_succeeds(self):
+        ''' Test if registration succeeds with correct arguments '''
         text = 'Successful Registration'
         self.open_registration_page()
         time.sleep(3)
