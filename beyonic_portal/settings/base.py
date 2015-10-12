@@ -11,7 +11,6 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 # Application definition
 INTERNAL_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
