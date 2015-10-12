@@ -1,2 +1,14 @@
 # Byte-compiled
 __pycache__/
+
+# sql-lite
+db.sqlite3
+
+# coverage
+.coverage
+
+# log files
+logs/*
+
+# STATIC_ROOT folder
+served/
