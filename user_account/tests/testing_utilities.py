@@ -35,6 +35,13 @@ def logout_client_user(self):
     return self
 
 
+def set_up_login_form_values():
+    entries = {}
+    entries["username"] = 'test098$'
+    entries["password"] = 'secret123'
+    return entries
+
+
 def set_up_form_values():
     # define some form fields/values
     entries = {}
