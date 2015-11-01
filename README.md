@@ -1,6 +1,7 @@
-#Beyonic Portal
+#Beyonic Portal [![Build Status](https://travis-ci.org/tedb19/beyonic_portal.svg?branch=master)](https://travis-ci.org/tedb19/beyonic_portal)
 
 This project has been built and tested on python 3.4
+
 
 1. Install, create and activate a virtualenv (see https://virtualenv.pypa.io/en/latest/installation.html for details)
 
