@@ -1,9 +1,9 @@
 language: python
 python:
   - '3.4'
-install: pip install -r requirements.txt
-env:
-  TWILIO_DEFAULT_CALLERID=Beyonics-Portal
-  ROOT_URL=http://127.0.0.1:8000
-  secure:JulmSS4Kkp/TF1HtWBTtp9X2eoU+jorzIhIwFdN63mGwE/64kDfRORBCv9K062+gWmfGRUOPW/ejj58mBFRHAPPG3L80UV1yfc3ArpXQ6xFqS0i1gkVyCiaaRb8eFKVclvdIoYXLePjSYL7PQX3y8ji+8s+fIVBo7YpW5eSTNr5SAKcyGbRKmQk+yfz5F15h55mXo9B+wNhIKZT6vWySz7BBLcpj7kqS3oYwbQJeHJ9L5xrV/0RRHkFvMuoIRg76w9zo0M8fMV6w7hcndXiKXhAxe69smFfaOdYFdLRIqso/W+62C9n3HtqXXlZku+Ng+XlA8N7Kr3AOWSSbzIOisum1MTsPqMYtiSs+xPABo7BQ6sUutiwGjqvSRvH5GodLC/4Sj7O6sklKu/s7hoG3+CHF6BBMNimwlJt5+QHzwX/CpMJn8YDwLuodR1eVV/8DSqSvn8B/cLlfgIVUQrSdMn2Kilr1MsjBr30GzgvTPGRhDTXN3/ay8YTxL9WYPJZZZhg39ZHu74rf2Vbt8Ub5eINvorhZCePoFlFwqU2hkv75DLl5fGbAm80Jdr4w3t6S0PFohzX2TAx0irkm43idFWFIgDqcngJlsh981vCsOO3oXhnyyHVKXsNgTFT/nFDDQwnKnV2NR3vVaAnJO9bzUnpiarZzwg/rIMT+Lj1fz9k=
+install: pip install -r requirements.txt 
 script: python manage.py test --settings=beyonic_portal.settings.test
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
